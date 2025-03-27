@@ -1,0 +1,12 @@
+<mat-card class="admin-panel">
+    <mat-card-title>Admin felület</mat-card-title>
+    <mat-card-content>
+      <app-user-table
+        [felhasznalok]="felhasznalok"
+        (modosit)="modositFelhasznalo($event)"
+        (torol)="torolFelhasznalo($event)"
+        (felszolit)="felszolitFelhasznalo($event)"
+      ></app-user-table>
+    </mat-card-content>
+  </mat-card>
+  

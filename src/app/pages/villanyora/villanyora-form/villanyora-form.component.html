@@ -1,0 +1,16 @@
+<form [formGroup]="form" (ngSubmit)="bekuld()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Villanyóra állás (kWh)</mat-label>
+      <input matInput type="number" formControlName="ertek" required>
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Megjegyzés (opcionális)</mat-label>
+      <input matInput type="text" formControlName="megjegyzes">
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Beküldés
+    </button>
+  </form>
+  

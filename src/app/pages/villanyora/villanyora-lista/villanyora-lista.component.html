@@ -1,0 +1,8 @@
+<div *ngIf="allasok.length === 0">
+    <p>Még nincs beküldött állás.</p>
+  </div>
+  
+  <div *ngFor="let allas of allasok">
+    <app-villanyora-sor [allas]="allas"></app-villanyora-sor>
+  </div>
+  

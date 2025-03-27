@@ -1,0 +1,8 @@
+<mat-card class="villanyora-page">
+    <mat-card-title>Villanyóra állás rögzítése</mat-card-title>
+    <mat-card-content>
+      <app-villanyora-form (ujAllas)="ujAllasErkezett($event)"></app-villanyora-form>
+      <app-villanyora-lista [allasok]="allasok"></app-villanyora-lista>
+    </mat-card-content>
+  </mat-card>
+  

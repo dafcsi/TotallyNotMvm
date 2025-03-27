@@ -1,0 +1,9 @@
+<mat-card class="allas-sor">
+    <mat-card-title>{{ allas.ertek }} kWh</mat-card-title>
+    <mat-card-subtitle>{{ allas.datum | date: 'yyyy. MM. dd.' }}</mat-card-subtitle>
+    <mat-card-content>
+      <p *ngIf="allas.megjegyzes">💬 {{ allas.megjegyzes }}</p>
+      <p>Állapot: {{ allas.ertek | kiemeltAllas }}</p>
+    </mat-card-content>
+  </mat-card>
+  
