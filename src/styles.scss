@@ -1,4 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// 🌞 Világos téma
+:root {
+    --primary-color: #1976d2;
+    --accent-color: #ff4081;
+    --background-color: #fafafa;
+    --card-background: #ffffff;
+    --text-color: #000000;
+  }
+  
+  // 🌙 Sötét mód (ha van 'dark-mode' class a body-n)
+  body.dark-mode {
+    --primary-color: #90caf9;
+    --accent-color: #f48fb1;
+    --background-color: #121212;
+    --card-background: #1e1e1e;
+    --text-color: #ffffff;
+  }
+  
+  // Általános alkalmazás színek
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+  
+  mat-card {
+    background-color: var(--card-background);
+    color: var(--text-color);
+  }
+  .mat-mdc-card {
+    background-color: var(--card-background);
+    color: var(--text-color);
+  }
+  

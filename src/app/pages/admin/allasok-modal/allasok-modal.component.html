@@ -1,1 +1,53 @@
-<p>allasok-modal works!</p>
+<h2 mat-dialog-title>Villanyóra állások</h2>
+
+<mat-dialog-content>
+  <table mat-table [dataSource]="allasok" class="mat-elevation-z2 full-width">
+    <ng-container matColumnDef="datum">
+      <th mat-header-cell *matHeaderCellDef>Dátum</th>
+      <td mat-cell *matCellDef="let a">{{ a.datum | date:'yyyy.MM.dd HH:mm' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ertek">
+      <th mat-header-cell *matHeaderCellDef>Érték (kWh)</th>
+      <td mat-cell *matCellDef="let a">{{ a.ertek }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="megjegyzes">
+      <th mat-header-cell *matHeaderCellDef>Megjegyzés</th>
+      <td mat-cell *matCellDef="let a">{{ a.megjegyzes }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="torles">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let a; let i = index;">
+        <button mat-icon-button color="warn" (click)="torol(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <form [formGroup]="form" (ngSubmit)="hozzad()" class="form">
+    <mat-form-field class="full-width">
+      <mat-label>Érték (kWh)</mat-label>
+      <input matInput type="number" formControlName="ertek">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Megjegyzés</mat-label>
+      <input matInput formControlName="megjegyzes">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+      Új állás hozzáadása
+    </button>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="megsem()">Mégse</button>
+  <button mat-raised-button color="accent" (click)="mentes()">Mentés</button>
+</mat-dialog-actions>

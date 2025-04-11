@@ -1,14 +1,44 @@
-<mat-card class="welcome-card">
-    <mat-card-title>Üdvözlünk a TotallyNotMVM rendszerben!</mat-card-title>
-    <mat-card-content>
+<mat-card class="welcome-card mat-elevation-z4">
+  <mat-card-header>
+    <div mat-card-avatar class="welcome-avatar"></div>
+    <mat-card-title>Üdvözlünk a <strong>TotallyNotMVM</strong> rendszerben!</mat-card-title>
+    <mat-card-subtitle>Ahol minden digitális. Még az ideg is.</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <section class="highlight-section">
+      <h2><mat-icon>flash_on</mat-icon> Villanyóra diktálás. Modern módra.</h2>
       <p>
-        Itt egyszerűen rögzítheted a villanyóra állásaidat,
-        megtekintheted a beküldött adatokat, és ha admin vagy, kezelheted a felhasználókat.
+        Felejtsd el a tollat, a cetlit, meg a "visszahívjuk" ígéretet. Itt <strong>kattintasz → diktálsz → kész</strong>.
       </p>
-      <div class="action-buttons">
-        <a mat-raised-button color="primary" routerLink="/login">Bejelentkezés</a>
-        <a mat-raised-button color="accent" routerLink="/register">Regisztráció</a>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  
+    </section>
+
+    <section class="feature-section">
+      <h3>🔥 Funkciók</h3>
+      <mat-list>
+        <mat-list-item><mat-icon matListIcon color="primary">send</mat-icon> Állás beküldése valós időben</mat-list-item>
+        <mat-list-item><mat-icon matListIcon color="accent">list</mat-icon> Előzmények megtekintése</mat-list-item>
+        <mat-list-item><mat-icon matListIcon color="warn">admin_panel_settings</mat-icon> Adminisztrációs felület</mat-list-item>
+        <mat-list-item><mat-icon matListIcon color="primary">devices</mat-icon> Teljesen reszponzív</mat-list-item>
+      </mat-list>
+    </section>
+
+    <section class="future-section">
+      <h3>🚀 Ami még jön:</h3>
+      <ul>
+        <li><span class="future-pill">Statisztikák</span> a fogyasztásodról</li>
+        <li><span class="future-pill">Emlékeztetők</span> diktálás előtt</li>
+        <li><span class="future-pill">Sötét mód</span>, mert mindenki kérni fogja</li>
+      </ul>
+    </section>
+
+    <blockquote>
+      <i>💬 „A digitalizáció nem opció. Csak az irány, meg az, hogy mikor esik le.”</i>
+    </blockquote>
+
+    <div class="start-now">
+      <button mat-raised-button color="primary" routerLink="/villanyora">📥 Diktálás indítása</button>
+      <button mat-stroked-button color="accent" routerLink="/admin">🛠️ Admin felület</button>
+    </div>
+  </mat-card-content>
+</mat-card>

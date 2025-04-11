@@ -1,1 +1,31 @@
-<p>user-form works!</p>
+<h2 mat-dialog-title>Felhasználó szerkesztése</h2>
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field class="full-width">
+      <mat-label>Név</mat-label>
+      <input matInput formControlName="nev" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Szerepkör</mat-label>
+      <mat-select formControlName="szerepkor">
+        <mat-option value="user">Felhasználó</mat-option>
+        <mat-option value="admin">Admin</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="aktiv">Aktív</mat-checkbox>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Mégse</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="form.invalid">
+    Mentés
+  </button>
+</mat-dialog-actions>

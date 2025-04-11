@@ -1,0 +1,36 @@
+<mat-toolbar color="primary" class="navbar">
+    <span class="brand">🔌 TotallyNotMVM</span>
+    <span class="spacer"></span>
+  
+    <a mat-button routerLink="/">Főoldal</a>
+    <a mat-button routerLink="/villanyora">Villanyóra</a>
+  
+    <ng-container *ngIf="user$ | async as user; else guestMenu">
+      <a mat-button *ngIf="user.szerepkor === 'admin'" routerLink="/admin">Admin</a>
+  
+      <button mat-icon-button [matMenuTriggerFor]="userMenu" matTooltip="Fiók">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item disabled>
+          <mat-icon>person</mat-icon>
+          {{ user.nev }}
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          Kijelentkezés
+        </button>
+      </mat-menu>
+    </ng-container>
+  
+    <ng-template #guestMenu>
+      <a mat-button routerLink="/login">Bejelentkezés</a>
+      <a mat-button routerLink="/register">Regisztráció</a>
+    </ng-template>
+  
+    <button mat-icon-button (click)="toggleDarkMode()" matTooltip="Sötét mód">
+      <mat-icon>{{ isDark ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+  </mat-toolbar>
+  

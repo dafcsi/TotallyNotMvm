@@ -1,13 +1,87 @@
 .welcome-card {
-    max-width: 600px;
-    margin: 2rem auto;
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 1rem;
+
+  mat-card-title {
+    font-size: 1.8rem;
+    color: #3f51b5;
+  }
+
+  mat-card-subtitle {
+    font-size: 1rem;
+    color: #666;
+  }
+
+  .highlight-section {
+    background: #e3f2fd;
     padding: 1rem;
-  
-    .action-buttons {
-      margin-top: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+
+    h2 {
       display: flex;
-      gap: 1rem;
-      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      color: #1976d2;
+    }
+
+    p {
+      font-size: 1.1rem;
     }
   }
-  
+
+  .feature-section {
+    margin: 2rem 0;
+
+    h3 {
+      color: #444;
+      margin-bottom: 1rem;
+    }
+
+    mat-list-item {
+      font-size: 1rem;
+    }
+  }
+
+  .future-section {
+    margin: 2rem 0;
+
+    .future-pill {
+      background-color: #c8e6c9;
+      color: #2e7d32;
+      font-weight: bold;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      margin-right: 0.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  blockquote {
+    margin-top: 2rem;
+    padding-left: 1rem;
+    border-left: 4px solid #ccc;
+    font-style: italic;
+    color: #555;
+  }
+
+  .start-now {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .welcome-avatar {
+    background: linear-gradient(135deg, #3f51b5, #1e88e5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+}

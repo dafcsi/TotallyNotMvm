@@ -5,11 +5,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Felhasznalo } from '../../../models/felhasznalo.model';
+import { InaktivFelhasznaloDirective } from '../../../shared/inaktiv-felhasznalo.directive';
+import { DisableIfAdminDirective } from '../../../shared/disable-if-admin.directive';
 
 @Component({
   selector: 'app-user-table',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatButtonModule, MatIconModule, MatTooltipModule],
+  imports: [CommonModule, MatTableModule, MatButtonModule, MatIconModule, MatTooltipModule,InaktivFelhasznaloDirective,DisableIfAdminDirective],
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss']
 })
