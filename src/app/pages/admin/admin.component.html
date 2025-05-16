@@ -1,12 +1,115 @@
-<mat-card class="admin-panel">
-    <mat-card-title>Admin felület</mat-card-title>
+<div class="admin-container">
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+  
+  <!-- Error Message -->
+  <div *ngIf="error" class="error-message">
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- Stats Dashboard -->
+  <div class="dashboard-section" *ngIf="!loading">
+    <mat-card class="dashboard-card mat-elevation-z4" [appHighlightOnHover]="'#f5f5f5'">
+      <mat-card-header>
+        <mat-card-title>
+          <div class="section-header">
+            <mat-icon color="primary">dashboard</mat-icon>
+            Dashboard
+          </div>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-panels">
+          <!-- User Stats Panel -->
+          <mat-card class="stat-card user-stats mat-elevation-z2">
+            <mat-card-title>Felhasználói Statisztikák</mat-card-title>
+            <mat-card-content>
+              <div class="stat-item" [appTooltip]="'Összes regisztrált felhasználó'">
+                <span class="stat-label">Összes felhasználó:</span>
+                <span class="stat-value">{{ totalUsers }}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Aktív felhasználók:</span>
+                <span class="stat-value">{{ activeUsers }}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Inaktív felhasználók:</span>
+                <span class="stat-value">{{ inactiveUsers }}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Admin felhasználók:</span>
+                <span class="stat-value">{{ adminUsers }}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Normál felhasználók:</span>
+                <span class="stat-value">{{ regularUsers }}</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Meter Reading Stats Panel -->
+          <mat-card class="stat-card reading-stats mat-elevation-z2">
+            <mat-card-title>Villanyóra Statisztikák</mat-card-title>
+            <mat-card-content>
+              <div class="stat-item">
+                <span class="stat-label">Összes leolvasás:</span>
+                <span class="stat-value">{{ totalReadings }}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Legutóbbi leolvasás:</span>
+                <span class="stat-value">{{ latestReadingDate && !isNaN(latestReadingDate.getTime()) ? (latestReadingDate | date:'yyyy-MM-dd') : 'Nincs leolvasás' }}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Átlagos óraállás:</span>
+                <span class="stat-value">{{ averageReading | number:'1.0-0' }} kWh</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Legmagasabb óraállás:</span>
+                <span class="stat-value">{{ highestReading }} kWh {{ highestReading | kiemeltAllas }}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Legalacsonyabb óraállás:</span>
+                <span class="stat-value">{{ lowestReading }} kWh</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Összes fogyasztás:</span>
+                <span class="stat-value">
+                  {{ totalReadings > 0 ? (averageReading * totalReadings | number:'1.0-0') : 0 }} kWh
+                </span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div class="dashboard-actions">
+          <button mat-raised-button color="primary" (click)="refreshStats()" [appHighlightOnHover]="highlightTotalUsers()">
+            <mat-icon>refresh</mat-icon> Frissítés
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- User Management Panel -->
+  <mat-card class="admin-panel mat-elevation-z4" *ngIf="!loading">
+    <mat-card-header>
+      <mat-card-title>
+        <div class="section-header">
+          <mat-icon color="primary">group</mat-icon>
+          Felhasználók kezelése
+        </div>
+      </mat-card-title>
+    </mat-card-header>
     <mat-card-content>
       <app-user-table
         [felhasznalok]="felhasznalok"
         (modosit)="modositFelhasznalo($event)"
         (torol)="torolFelhasznalo($event)"
         (felszolit)="felszolitFelhasznalo($event)"
+        (allasokMegnyitas)="nyitAllasokModal($event)"
       ></app-user-table>
     </mat-card-content>
   </mat-card>
-  
+</div>

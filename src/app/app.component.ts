@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AuthService } from './services/auth.service';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from './shared/material.module';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MatToolbarModule, RouterModule,MatCardModule, MatButtonModule,NavbarComponent, CommonModule],
+  imports: [RouterModule, NavbarComponent, CommonModule, MaterialModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

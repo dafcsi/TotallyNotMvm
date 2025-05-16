@@ -1,8 +1,38 @@
-<div *ngIf="allasok.length === 0">
+<div *ngIf="loading" class="loading-spinner">
+  <mat-spinner diameter="40"></mat-spinner>
+</div>
+
+<div *ngIf="errorMessage" class="error-message">
+  <p>{{ errorMessage }}</p>
+</div>
+
+<mat-card *ngIf="allasok.length === 0 && !loading">
+  <mat-card-content>
     <p>Még nincs beküldött állás.</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="onRefresh()" appHighlightOnHover="#e0f7fa">
+      Frissítés
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<div *ngIf="allasok.length > 0" class="readings-container">
+  <h3>Összes fogyasztás: {{ allasok | fogyasztas }} kWh</h3>
+  <mat-divider></mat-divider>
+  
+  <div *ngFor="let allas of allasok; let i = index; let isLast = last">
+    <app-villanyora-sor 
+      [allas]="allas" 
+      [index]="i"
+      [isLast]="isLast"
+      (deleteClick)="onDeleteAllas(i)"
+      (editClick)="onEditAllas(i, allas)">
+    </app-villanyora-sor>
+    <mat-divider *ngIf="!isLast"></mat-divider>
   </div>
   
-  <div *ngFor="let allas of allasok">
-    <app-villanyora-sor [allas]="allas"></app-villanyora-sor>
+  <div class="total-status">
+    <p>{{ allasok.length > 5000 ? 5000 : 1000 | kiemeltAllas }}</p>
   </div>
-  
+</div>

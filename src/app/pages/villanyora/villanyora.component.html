@@ -1,4 +1,13 @@
 <div class="villanyora-container">
+  <!-- Állapot információk -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    <p>{{ error }}</p>
+  </div>
+
   <!-- Állás beküldő panel -->
   <mat-card class="allas-form-card mat-elevation-z4">
     <mat-card-header>
@@ -9,13 +18,24 @@
     </mat-card-content>
   </mat-card>
 
+  <!-- Fogyasztási információ -->
+  <div *ngIf="allasok.length > 0" class="consumption-card">
+    <p>Az összes fogyasztásod: <strong>{{ allasok | fogyasztas }}</strong> kWh</p>
+  </div>
+
   <!-- Előzmények panel -->
   <mat-card class="allas-lista-card mat-elevation-z2">
     <mat-card-header>
       <mat-card-title><mat-icon color="accent">history</mat-icon> Korábbi állások</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <app-villanyora-lista [allasok]="allasok"></app-villanyora-lista>
+      <app-villanyora-lista 
+        [allasok]="allasok" 
+        [loading]="loading" 
+        [errorMessage]="error"
+        (deleteAllas)="allasTorlese($event)"
+        (refreshAllasok)="loadAllasok()">
+      </app-villanyora-lista>
     </mat-card-content>
   </mat-card>
 </div>

@@ -1,26 +1,17 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { VillanyoraAllas } from '../../../models/villanyora-allas.model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatTableModule } from '@angular/material/table';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { MaterialModule } from '../../../shared/material.module';
 
 @Component({
   selector: 'app-allasok-modal',
   standalone: true,
   imports: [
     CommonModule,
-    MatDialogModule,
-    MatTableModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   templateUrl: './allasok-modal.component.html',
   styleUrls: ['./allasok-modal.component.scss']
@@ -36,7 +27,7 @@ export class AllasokModalComponent {
     private dialogRef: MatDialogRef<AllasokModalComponent>,
     private fb: FormBuilder
   ) {
-    this.allasok = [...data]; // Másolat, hogy ne írjuk felül direktben
+    this.allasok = [...data];
     this.form = this.fb.group({
       ertek: [null, [Validators.required, Validators.min(0)]],
       megjegyzes: ['']

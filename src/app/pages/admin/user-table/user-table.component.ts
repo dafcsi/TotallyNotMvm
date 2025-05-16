@@ -1,17 +1,19 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { Felhasznalo } from '../../../models/felhasznalo.model';
 import { InaktivFelhasznaloDirective } from '../../../shared/inaktiv-felhasznalo.directive';
 import { DisableIfAdminDirective } from '../../../shared/disable-if-admin.directive';
+import { MaterialModule } from '../../../shared/material.module';
 
 @Component({
   selector: 'app-user-table',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatButtonModule, MatIconModule, MatTooltipModule,InaktivFelhasznaloDirective,DisableIfAdminDirective],
+  imports: [
+    CommonModule, 
+    MaterialModule,
+    InaktivFelhasznaloDirective,
+    DisableIfAdminDirective
+  ],
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss']
 })
@@ -21,6 +23,7 @@ export class UserTableComponent {
   @Output() torol = new EventEmitter<string>();
   @Output() felszolit = new EventEmitter<string>();
   @Output() modosit = new EventEmitter<Felhasznalo>();
+  @Output() allasokMegnyitas = new EventEmitter<Felhasznalo>();
 
   displayedColumns: string[] = ['nev', 'email', 'szerepkor', 'műveletek'];
 
@@ -34,5 +37,9 @@ export class UserTableComponent {
 
   onModosit(felhasznalo: Felhasznalo) {
     this.modosit.emit(felhasznalo);
+  }
+  
+  onAllasokMegnyitas(felhasznalo: Felhasznalo) {
+    this.allasokMegnyitas.emit(felhasznalo);
   }
 }

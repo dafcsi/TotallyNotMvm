@@ -1,20 +1,14 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { VillanyoraAllas } from '../../../models/villanyora-allas.model';
+import { MaterialModule } from '../../../shared/material.module';
 
 @Component({
   selector: 'app-villanyora-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule
+    MaterialModule
   ],
   templateUrl: './villanyora-form.component.html',
   styleUrls: ['./villanyora-form.component.scss']
